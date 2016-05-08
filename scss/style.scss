@@ -1,0 +1,350 @@
+@import "sprite";
+@import "fonts";
+@import "mixins";
+@import "reset";
+
+$black : #3c3c3c;
+
+body{
+  font-family: 'LatoWeb', 'Lucida Console';
+  background-color: #fff;
+//  width: 1920px;
+  min-width: 940px;
+}
+
+.my-block{
+  width: 100%;
+  position: relative;
+  img {
+    width: 100%;
+  }
+  div.inner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+div.s-pen {
+  @include sprite($s-pen);
+}
+div.s-code {
+  @include sprite($s-code);
+}
+div.s-blank {
+  @include sprite($s-blank);
+}
+/* ====================== */
+header {
+  @extend .my-block;
+  div.inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    div[class^='space']{
+      flex-basis: 10px;
+      flex-grow:1;
+    }
+    div.space1{
+      flex-grow:14;
+    }
+    div.space2{
+      flex-grow: 3;
+    }
+    div.space4{
+      flex-grow:12;
+    }
+    div.space5{
+      flex-grow: 6;
+    }
+  }
+  p {
+    color: #fff;
+    text-transform: uppercase;
+    &.big-text {
+      font-family: 'LatoWebBold';
+      letter-spacing: 0.15em;
+      font-size: 54px;
+      text-align: center;
+      line-height: 1.2em;
+    }
+    &.small-text{
+      letter-spacing: 0.05em;
+      font-size: 15px;
+      text-align: center;
+      line-height: 2em;
+    }
+  }
+}
+
+div.ellipse {// нижняя полоса
+  $color : #fff;
+  color: $color;
+  width: 80px;
+  position: relative;
+  border-bottom: 2px solid $color;
+  transform: scale(0.66);
+  &:before {//Треугольк
+    content: '';
+    position: relative;
+    top: 35px;
+    left: 42px;
+    display: block;
+
+    transform-origin: 0 0;
+    @include rotate3(37deg,48.9deg,27.7deg);
+    width: 109px;
+    height: 109px;
+
+    border: 3px solid transparent;
+    border-left-color: $color;
+    border-top-color: $color;
+
+  }
+  &:after {// точки и круг
+    position: absolute;
+    bottom: 0;
+    left: -7px;
+
+    border-radius: 50%;
+    height: 93px;
+    width: 93px;
+    border: 2px solid $color;
+
+
+    content: '\2022\2022\2022';
+    color: $color;
+    font-size: 25px;
+    letter-spacing: 25px;
+    font-family: 'LatoWebBold';
+    line-height: 193px;
+    text-align: center;
+  }
+}
+
+
+button{
+  width: 395px;
+  height: 58px;
+  border: none;
+  background: $black;
+  color: #fff;
+  text-transform: uppercase;
+  display: block;
+  margin: 45px auto 0;
+  letter-spacing: 4px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+div.something {
+  $color : #fff;
+  margin: 10px auto;
+  height: 33px;
+  width: 19px;
+  border-radius: 20px;
+  border: 2px solid $color;
+  position: relative;
+  &:after{
+    top:8px;
+    left: 8px;
+    content: '';
+    position: absolute;
+    display: block;
+    width: 3px;
+    height: 3px;
+    background: $color;
+  }
+}
+
+table.interrupt-border {
+  $border : 1px solid $black;
+  th {
+    min-height: 0.5em;
+    font-size: 34px;
+    min-width: 230px;
+    &[rowspan='2'] {
+      padding: 0 80px;
+      vertical-align: middle;
+      width: auto;
+      text-transform: uppercase;
+      font-family: 'LatoWebBold';
+      letter-spacing: 0.15em;
+    }
+  }
+  thead tr:last-child {
+    th {
+      border-top: $border;
+      &:last-child {
+        border-right: $border;
+      }
+      &:first-child {
+        border-left: $border;
+      }
+    }
+  }
+  td {
+    border: $border ;
+    border-top-color: transparent;
+    padding: 34px 165px 48px;
+    p {
+      font-family: LatoWebLight;
+      width: 570px;
+      text-align: center;
+      line-height: 1.5em;
+    }
+  }
+}
+
+div#about-us, div#service, div#what-we-do, div#contact-us{
+ @extend .my-block;
+  div.inner {
+    display: flex;
+    table {
+      margin: auto;
+    }
+  }
+}
+
+div#about-us img{
+  margin-bottom: -15px;
+  min-height: 400px;
+}
+
+div#service {
+  color: #fff;
+  img {
+    min-height: 350px;
+    overflow: hidden;
+  }
+  table.interrupt-border {
+    $border : 1px solid #fff;
+    thead tr:last-child {
+      th {
+        border-top: $border;
+        &:last-child {
+          border-right: $border;
+        }
+        &:first-child {
+          border-left: $border;
+        }
+      }
+    }
+    td {
+      border: $border ;
+      border-top-color: transparent;
+    }
+  }
+}
+
+div#what-we-do {
+  min-height: 800px;
+  img{
+    margin-bottom: -0.3%;
+  }
+  div.inner {
+    table.interrupt-border {
+      height: 86%;
+      td {
+        height: 100%;
+        text-align: center;
+        & > div {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          * {
+            margin: 5px;
+          }
+          div[class|='s'] {
+            align-self: center;
+          }
+          h1{
+            text-transform: uppercase;
+            font-size: 20px;
+            font-family: 'LatoWebBold';
+            letter-spacing: 3px;
+          }
+          p{
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+div#our-works {
+  $margin : 9px;
+  margin-left: -$margin ;
+  width: calc(100% + 9px);
+  display: flex;
+  flex-wrap: wrap;
+  &>span {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    img {
+      align-self: stretch;
+      flex-grow: 1;
+      margin-left: $margin;
+      margin-bottom: $margin;
+    }
+    span {
+      color: #fff;
+      text-transform: uppercase;
+      position: absolute;
+      font-size: 34px;
+      font-family: 'LatoWebBold';
+      left: 45px;
+      letter-spacing: 6px;
+      bottom: 40px;
+    }
+  }
+}
+
+div#contact-us {
+  img {
+    min-height: 350px;
+  }
+  div.inner {
+    table {
+      margin: auto auto 0 auto;
+    }
+  }
+}
+
+footer{
+  text-align: center;
+  padding: 60px 0;
+  height: 50px;
+  overflow-y: hidden;
+  div.ellipse {// нижняя полоса
+    margin: -40px 10px -35px;
+    $color: $black;
+    display: inline-block;
+    color: $color;
+    border-bottom: 2px solid $color;
+    transform: scale(0.4);
+    &:before {//Треугольк
+      border: 3px solid transparent;
+      border-left-color: $color;
+      border-top-color: $color;
+    }
+    &:after {// точки и круг
+      border: 2px solid $color;
+      color: $color;
+    }
+  }
+  span {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 17px;
+    font-size: 14px;;
+  }
+}

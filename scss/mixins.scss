@@ -1,0 +1,4 @@
+@mixin rotate3($x,$y,$z) {
+  -webkit-transform: rotateZ($z) rotateX($x) rotateY($y);
+  transform: rotateZ($z) rotateX($x) rotateY($y);
+}

@@ -1,0 +1,6 @@
+.idea
+node_modules
+template.psd
+web/css
+web/images/sprite.png
+scss/sprite.scss
