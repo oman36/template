@@ -17,7 +17,7 @@ class Product {
             (temp_value & 1 ) ? count++ : null;
             temp_value = temp_value << 1;
         }
-        return this.price * (1 + count / 100);
+        return this.price * (1 - count / 100);
     }
     setPrice(price) {
         this.price = price;
